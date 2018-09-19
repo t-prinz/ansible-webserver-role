@@ -1,0 +1,3 @@
+---
+# defaults file for ansible-webserver-role
+webserver_content: "My default home page"

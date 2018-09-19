@@ -1,0 +1,7 @@
+---
+# handlers file for ansible-webserver-role
+- name: Restart httpd
+  service:
+    name: httpd
+    enabled: Yes
+    state: started

@@ -1,0 +1,25 @@
+---
+# tasks file for ansible-webserver-role
+- name: Ensure Apache is installed
+  package:
+    name: httpd
+    state: latest
+  notify: Restart httpd
+
+- name: Ensure Apache starts on boot and is started
+  service:
+    name: httpd
+    enabled: Yes
+    state: started
+
+- name: Ensure firewall is configured
+  firewalld:
+    immediate: True
+    permanent: Yes
+    service: http
+    state: enabled
+
+- name: Initialize content with {{ webserver_content }}
+  copy:
+    content: "{{ webserver_content }}"
+    dest: /var/www/html/index.html
